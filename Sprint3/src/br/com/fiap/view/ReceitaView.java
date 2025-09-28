@@ -4,8 +4,15 @@ import br.com.fiap.controller.ReceitaController;
 import br.com.fiap.controller.ReceitaController;
 
 import javax.swing.*;
-import java.time.LocalDateTime;
 
+/**
+ * Classe <strong>ReceitaView</strong>, onde são chamados os metodos CRUD para manipular objetos da classe <strong>Receita</strong> por meio dos <strong>Controllers</strong>
+ * @author Lucas Barros Gouveia
+ * @author Enzo Okuizumi Miranda de Souza
+ * @author Milton Jakson de Souza Marcelino
+ * @version 1.0
+ * @since 21.0.7
+ */
 public class ReceitaView {
     public static void main(String[] args) {
         String medicamento, prescricao;

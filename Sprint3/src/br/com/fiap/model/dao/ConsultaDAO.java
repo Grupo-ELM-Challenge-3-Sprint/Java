@@ -8,6 +8,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Classe para criar objetos do tipo <strong>ConsultaDAO</strong> que implementa a interface <strong>IDAO</strong>
+ * @author Lucas Barros Gouveia
+ * @author Enzo Okuizumi Miranda de Souza
+ * @author Milton Jakson de Souza Marcelino
+ * @version 1.0
+ * @since 21.0.7
+ */
 public class ConsultaDAO implements IDAO {
     private Connection con;
     private Consulta consulta;
@@ -20,6 +28,14 @@ public class ConsultaDAO implements IDAO {
         return con;
     }
 
+    /**
+     * O metodo <strong>inserir</strong>, recebe um objeto por parametro, que vai ser a consulta, e retorna uma mensagem de erro ou de sucesso.
+     * Dentro do metodo ele pega os atributos idCliente, nomeMed, horario, local, observacao do object e coloca eles no preparedStatement, que usa a conexão para <strong>inserir</strong> a consulta na base de dados SQL.
+     * @author Lucas Barros Gouveia
+     * @author Enzo Okuizumi Miranda de Souza
+     * @author Milton Jakson de Souza Marcelino
+     * @param object é o objeto passado por parametro, que vai receber os valores da consulta.
+     */
     public String inserir(Object object) {
         consulta = (Consulta) object;
         String sql = "INSERT INTO ddd_consulta(id_cliente, nome_med, horario, local, observacao) VALUES(?,?,?,?,?)";
@@ -41,6 +57,14 @@ public class ConsultaDAO implements IDAO {
         }
     }
 
+    /**
+     * O metodo <strong>alterar</strong>, recebe um objeto por parametro, que vai ser a consulta, e retorna uma mensagem de erro ou de sucesso.
+     * Dentro do metodo ele pega os atributos idConsulta, idCliente, nomeMed, horario, local, observacao do object e coloca eles no preparedStatement, que usa a conexão para <strong>alterar</strong> a consulta na base de dados SQL.
+     * @author Lucas Barros Gouveia
+     * @author Enzo Okuizumi Miranda de Souza
+     * @author Milton Jakson de Souza Marcelino
+     * @param object é o objeto passado por parametro, que vai receber os valores da consulta.
+     */
     public String alterar(Object object) {
         consulta = (Consulta) object;
         String sql = "UPDATE ddd_consulta SET id_cliente=?, nome_med=?, horario=?, local=?, observacao=? WHERE id_consulta = ?";
@@ -64,6 +88,14 @@ public class ConsultaDAO implements IDAO {
         }
     }
 
+    /**
+     * O metodo <strong>excluir</strong>, recebe um objeto por parametro, que vai ser a consulta, e retorna uma mensagem de erro ou de sucesso.
+     * Dentro do metodo ele pega os atributos idConsulta do object e coloca eles no preparedStatement, que usa a conexão para <strong>excluir</strong> a consulta na base de dados SQL.
+     * @author Lucas Barros Gouveia
+     * @author Enzo Okuizumi Miranda de Souza
+     * @author Milton Jakson de Souza Marcelino
+     * @param object é o objeto passado por parametro, que vai receber os valores da consulta.
+     */
     public String excluir(Object object) {
         consulta = (Consulta) object;
         String sql = "DELETE FROM ddd_consulta WHERE id_consulta = ?";
@@ -81,6 +113,14 @@ public class ConsultaDAO implements IDAO {
         }
     }
 
+    /**
+     * O metodo <strong>listarUm</strong>, recebe um objeto por parametro, que vai ser a consulta, e retorna uma mensagem de erro ou de sucesso.
+     * Dentro do metodo ele pega os atributos idConsulta do object e coloca eles no preparedStatement, que usa a conexão para <strong>listar</strong> a consulta da base de dados SQL para o usuário.
+     * @author Lucas Barros Gouveia
+     * @author Enzo Okuizumi Miranda de Souza
+     * @author Milton Jakson de Souza Marcelino
+     * @param object é o objeto passado por parametro, que vai receber os valores da consulta.
+     */
     public String listarUm(Object object) {
         consulta = (Consulta) object;
         String sql = "SELECT FROM ddd_consulta WHERE id_consulta = ?";

@@ -2,6 +2,14 @@ package br.com.fiap.model.dto;
 
 import java.time.LocalDateTime;
 
+/**
+ * Classe para criar objetos do tipo <strong>Consulta</strong>
+ * @author Lucas Barros Gouveia
+ * @author Enzo Okuizumi Miranda de Souza
+ * @author Milton Jakson de Souza Marcelino
+ * @version 1.0
+ * @since 21.0.7
+ */
 public class Consulta {
     private int idConsulta;
     private int idCliente;
@@ -29,8 +37,23 @@ public class Consulta {
     public String getNomeMed() {
         return nomeMed;
     }
+    /**
+     * O setter "setNomeMed", recebe uma string por parametro que deve possuir apenas letras, caso contrário ele faz o tratamento de erro.
+     * @author Lucas Barros Gouveia
+     * @author Enzo Okuizumi Miranda de Souza
+     * @author Milton Jakson de Souza Marcelino
+     * @param nomeMed é o nome do profissional da saúde passado por parametro.
+     */
     public void setNomeMed(String nomeMed) {
-        this.nomeMed = nomeMed;
+        try {
+            if (nomeMed.matches("^\\p{L}[\\p{L} \\-']*$")) {
+                this.nomeMed = nomeMed;
+            } else {
+                throw new Exception("Nome inválido! Não use caracteres especiais ou números.");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public LocalDateTime getHorario() {

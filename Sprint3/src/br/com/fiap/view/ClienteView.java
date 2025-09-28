@@ -5,6 +5,14 @@ import br.com.fiap.controller.ClienteController;
 import javax.swing.*;
 import java.sql.SQLException;
 
+/**
+ * Classe <strong>ClienteView</strong>, onde são chamados os metodos CRUD para manipular objetos da classe <strong>Cliente</strong> por meio dos <strong>Controllers</strong>
+ * @author Lucas Barros Gouveia
+ * @author Enzo Okuizumi Miranda de Souza
+ * @author Milton Jakson de Souza Marcelino
+ * @version 1.0
+ * @since 21.0.7
+ */
 public class ClienteView {
     public static void main(String[] args) {
         String cpf, nome, senha;

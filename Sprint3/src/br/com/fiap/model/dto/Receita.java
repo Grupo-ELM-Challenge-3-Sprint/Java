@@ -1,5 +1,13 @@
 package br.com.fiap.model.dto;
 
+/**
+ * Classe para criar objetos do tipo <strong>Receita</strong>
+ * @author Lucas Barros Gouveia
+ * @author Enzo Okuizumi Miranda de Souza
+ * @author Milton Jakson de Souza Marcelino
+ * @version 1.0
+ * @since 21.0.7
+ */
 public class Receita {
     private int idReceita;
     private int idCliente;
