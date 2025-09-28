@@ -15,7 +15,8 @@ CREATE TABLE ddd_receita(
     id_receita NUMBER(8) NOT NULL PRIMARY KEY,
     id_cliente number(6) NOT NULL,
     medicamento VARCHAR2(50) NOT NULL,
-    prescricao VARCHAR2(250) NOT NULL
+    prescricao VARCHAR2(250) NOT NULL,
+    FOREIGN KEY(id_cliente) REFERENCES ddd__cliente(id_cliente)
 )
 
 CREATE TABLE ddd_receita(
@@ -24,5 +25,6 @@ CREATE TABLE ddd_receita(
     nome_med VARCHAR2(50) NOT NULL,
     horario TIMESTAMP NOT NULL,
     local VARCHAR2(100) NOT NULL,
-    observacao VARCHAR2(100)
+    observacao VARCHAR2(100),
+    FOREIGN KEY(id_cliente) REFERENCES ddd__cliente(id_cliente)
 )
