@@ -1,6 +1,6 @@
 package br.com.fiap.model.dao;
 
-import br.com.fiap.model.dto.Cliente;
+import br.com.fiap.model.dto.Paciente;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,18 +8,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Classe para criar objetos do tipo <strong>ClienteDAO</strong> que implementa a interface <strong>IDAO</strong>
+ * Classe para criar objetos do tipo <strong>PacienteDAO</strong> que implementa a interface <strong>IDAO</strong>
  * @author Lucas Barros Gouveia
  * @author Enzo Okuizumi Miranda de Souza
  * @author Milton Jakson de Souza Marcelino
  * @version 1.0
  * @since 21.0.7
  */
-public class ClienteDAO implements IDAO {
+public class PacienteDAO implements IDAO {
     private Connection con;
-    private Cliente cliente;
+    private Paciente paciente;
 
-    public ClienteDAO(Connection con) {
+    public PacienteDAO(Connection con) {
         this.con = con;
     }
 
@@ -28,20 +28,20 @@ public class ClienteDAO implements IDAO {
     }
 
     /**
-     * O metodo <strong>inserir</strong>, recebe um objeto por parametro, que vai ser o cliente, e retorna uma mensagem de erro ou de sucesso.
-     * Dentro do metodo ele pega os atributos cpf, nome, senha do object e coloca eles no preparedStatement, que usa a conexão para <strong>inserir</strong> o cliente na base de dados SQL.
+     * O metodo <strong>inserir</strong>, recebe um objeto por parametro, que vai ser o paciente, e retorna uma mensagem de erro ou de sucesso.
+     * Dentro do metodo ele pega os atributos cpf, nome, senha do object e coloca eles no preparedStatement, que usa a conexão para <strong>inserir</strong> o paciente na base de dados SQL.
      * @author Lucas Barros Gouveia
      * @author Enzo Okuizumi Miranda de Souza
      * @author Milton Jakson de Souza Marcelino
      * @param object é o objeto passado por parametro, que vai receber os valores da consulta.
      */
     public String inserir(Object object) {
-        cliente = (Cliente) object;
-        String sql = "INSERT INTO ddd_cliente(cpf, nome, senha)";
+        paciente = (Paciente) object;
+        String sql = "INSERT INTO ddd_paciente(nm_paci, cpf, senha)";
         try (PreparedStatement ps = getCon().prepareStatement(sql)) {
-            ps.setString(1, cliente.getCpf());
-            ps.setString(2, cliente.getNome());
-            ps.setString(3, cliente.getSenha());
+            ps.setString(1, paciente.getCpf());
+            ps.setString(2, paciente.getNome());
+            ps.setString(3, paciente.getSenha());
             if (ps.executeUpdate() > 0) {
                 return "Inserido com sucesso";
             } else {
@@ -55,21 +55,21 @@ public class ClienteDAO implements IDAO {
     }
 
     /**
-     * O metodo <strong>alterar</strong>, recebe um objeto por parametro, que vai ser o cliente, e retorna uma mensagem de erro ou de sucesso.
-     * Dentro do metodo ele pega os atributos idCliente, cpf, nome, senha do object e coloca eles no preparedStatement, que usa a conexão para <strong>alterar</strong> o cliente na base de dados SQL.
+     * O metodo <strong>alterar</strong>, recebe um objeto por parametro, que vai ser o paciente, e retorna uma mensagem de erro ou de sucesso.
+     * Dentro do metodo ele pega os atributos idPaciente, cpf, nome, senha do object e coloca eles no preparedStatement, que usa a conexão para <strong>alterar</strong> o paciente na base de dados SQL.
      * @author Lucas Barros Gouveia
      * @author Enzo Okuizumi Miranda de Souza
      * @author Milton Jakson de Souza Marcelino
      * @param object é o objeto passado por parametro, que vai receber os valores da consulta.
      */
     public String alterar(Object object) {
-        cliente = (Cliente) object;
-        String sql = "UPDATE ddd_cliente SET cpf = ?, nome = ?, senha = ? WHERE idCliente = ?";
+        paciente = (Paciente) object;
+        String sql = "UPDATE ddd_paciente SET nm_paci = ?, cpf = ?, senha = ? WHERE id_paci = ?";
         try (PreparedStatement ps = getCon().prepareStatement(sql)) {
-            ps.setString(1, cliente.getCpf());
-            ps.setString(2, cliente.getNome());
-            ps.setString(3, cliente.getSenha());
-            ps.setInt(4, cliente.getIdCliente());
+            ps.setString(1, paciente.getCpf());
+            ps.setString(2, paciente.getNome());
+            ps.setString(3, paciente.getSenha());
+            ps.setInt(4, paciente.getIdPaciente());
             if (ps.executeUpdate() > 0) {
                 return "Alterado com sucesso";
             } else {
@@ -83,18 +83,18 @@ public class ClienteDAO implements IDAO {
     }
 
     /**
-     * O metodo <strong>excluir</strong>, recebe um objeto por parametro, que vai ser o cliente, e retorna uma mensagem de erro ou de sucesso.
-     * Dentro do metodo ele pega os atributos idCliente do object e coloca eles no preparedStatement, que usa a conexão para <strong>excluir</strong> o cliente na base de dados SQL.
+     * O metodo <strong>excluir</strong>, recebe um objeto por parametro, que vai ser o paciente, e retorna uma mensagem de erro ou de sucesso.
+     * Dentro do metodo ele pega os atributos idPaciente do object e coloca eles no preparedStatement, que usa a conexão para <strong>excluir</strong> o paciente na base de dados SQL.
      * @author Lucas Barros Gouveia
      * @author Enzo Okuizumi Miranda de Souza
      * @author Milton Jakson de Souza Marcelino
      * @param object é o objeto passado por parametro, que vai receber os valores da consulta.
      */
     public String excluir(Object object) {
-        cliente = (Cliente) object;
-        String sql = "DELETE FROM ddd_cliente WHERE idCliente = ?";
+        paciente = (Paciente) object;
+        String sql = "DELETE FROM ddd_paciente WHERE id_paci = ?";
         try (PreparedStatement ps = getCon().prepareStatement(sql)) {
-            ps.setInt(1, cliente.getIdCliente());
+            ps.setInt(1, paciente.getIdPaciente());
             if (ps.executeUpdate() > 0) {
                 return "excluido com sucesso";
             } else {
@@ -108,21 +108,21 @@ public class ClienteDAO implements IDAO {
     }
 
     /**
-     * O metodo <strong>listar</strong>, recebe um objeto por parametro, que vai ser o cliente, e retorna uma mensagem de erro ou de sucesso.
-     * Dentro do metodo ele pega os atributos idCliente do object e coloca eles no preparedStatement, que usa a conexão para <strong>listar</strong> o cliente da base de dados SQL para o usuário.
+     * O metodo <strong>listar</strong>, recebe um objeto por parametro, que vai ser o paciente, e retorna uma mensagem de erro ou de sucesso.
+     * Dentro do metodo ele pega os atributos idPaciente do object e coloca eles no preparedStatement, que usa a conexão para <strong>listar</strong> o paciente da base de dados SQL para o usuário.
      * @author Lucas Barros Gouveia
      * @author Enzo Okuizumi Miranda de Souza
      * @author Milton Jakson de Souza Marcelino
      * @param object é o objeto passado por parametro, que vai receber os valores da consulta.
      */
     public String listarUm(Object object) {
-        cliente = (Cliente) object;
-        String sql = "SELECT * FROM ddd_cliente WHERE idCliente = ?";
+        paciente = (Paciente) object;
+        String sql = "SELECT * FROM ddd_paciente WHERE id_paci = ?";
         try (PreparedStatement ps = getCon().prepareStatement(sql)) {
-            ps.setInt(1, cliente.getIdCliente());
+            ps.setInt(1, paciente.getIdPaciente());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return String.format("ID: %s\nCPF: %s\nNome: %s\nSenha: %s", cliente.getIdCliente(), cliente.getCpf(), cliente.getNome(), cliente.getSenha());
+                return String.format("ID: %s\nCPF: %s\nNome: %s\nSenha: %s", paciente.getIdPaciente(), paciente.getCpf(), paciente.getNome(), paciente.getSenha());
             } else {
                 return "Registro não encontrado";
             }

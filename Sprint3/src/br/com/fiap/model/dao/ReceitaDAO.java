@@ -30,7 +30,7 @@ public class ReceitaDAO implements IDAO{
 
     /**
      * O metodo <strong>inserir</strong>, recebe um objeto por parametro, que vai ser a receita, e retorna uma mensagem de erro ou de sucesso.
-     * Dentro do metodo ele pega os atributos idCliente, medicamento, prescricao do object e coloca eles no preparedStatement, que usa a conexão para <strong>inserir</strong> a receita na base de dados SQL.
+     * Dentro do metodo ele pega os atributos idPaciente, medicamento, prescricao do object e coloca eles no preparedStatement, que usa a conexão para <strong>inserir</strong> a receita na base de dados SQL.
      * @author Lucas Barros Gouveia
      * @author Enzo Okuizumi Miranda de Souza
      * @author Milton Jakson de Souza Marcelino
@@ -38,9 +38,9 @@ public class ReceitaDAO implements IDAO{
      */
     public String inserir(Object object) {
         receita = (Receita) object;
-        String sql = "INSERT INTO ddd_receita(id_cliente, medicamento, descricao) VALUES(?,?,?)";
+        String sql = "INSERT INTO ddd_receita(id_paci, medicamento, descricao) VALUES(?,?,?)";
         try (PreparedStatement ps = getCon().prepareStatement(sql)) {
-            ps.setInt(1, receita.getIdCliente());
+            ps.setInt(1, receita.getIdPaciente());
             ps.setString(2, receita.getMedicamento());
             ps.setString(3, receita.getPrescricao());
             if (ps.executeUpdate() > 0) {
@@ -57,7 +57,7 @@ public class ReceitaDAO implements IDAO{
 
     /**
      * O metodo <strong>alterar</strong>, recebe um objeto por parametro, que vai ser a receita, e retorna uma mensagem de erro ou de sucesso.
-     * Dentro do metodo ele pega os atributos idCliente, medicamento, prescricao e idReceita do object e coloca eles no preparedStatement, que usa a conexão para <strong>alterar</strong> a receita na base de dados SQL.
+     * Dentro do metodo ele pega os atributos idPaciente, medicamento, prescricao e idReceita do object e coloca eles no preparedStatement, que usa a conexão para <strong>alterar</strong> a receita na base de dados SQL.
      * @author Lucas Barros Gouveia
      * @author Enzo Okuizumi Miranda de Souza
      * @author Milton Jakson de Souza Marcelino
@@ -65,9 +65,9 @@ public class ReceitaDAO implements IDAO{
      */
     public String alterar(Object object) {
         receita = (Receita) object;
-        String sql = "UPDATE ddd_receita SET id_cliente=?, medicamento=?, descricao=? WHERE id_receita = ?";
+        String sql = "UPDATE ddd_receita SET id_paci=?, medicamento=?, descricao=? WHERE id_receita = ?";
         try (PreparedStatement ps = getCon().prepareStatement(sql)) {
-            ps.setInt(1, receita.getIdCliente());
+            ps.setInt(1, receita.getIdPaciente());
             ps.setString(2, receita.getMedicamento());
             ps.setString(3, receita.getPrescricao());
             ps.setInt(4, receita.getIdReceita());

@@ -10,7 +10,7 @@ package br.com.fiap.model.dto;
  */
 public class Receita {
     private int idReceita;
-    private int idCliente;
+    private int idPaciente;
     private String medicamento;
     private String prescricao;
 
@@ -30,11 +30,11 @@ public class Receita {
         this.medicamento = medicamento;
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public int getIdPaciente() {
+        return idPaciente;
     }
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
     public int getIdReceita() {

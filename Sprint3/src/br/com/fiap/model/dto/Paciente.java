@@ -1,26 +1,26 @@
 package br.com.fiap.model.dto;
 
 /**
- * Classe para criar objetos do tipo <strong>Cliente</strong>
+ * Classe para criar objetos do tipo <strong>Paciente</strong>
  * @author Lucas Barros Gouveia
  * @author Enzo Okuizumi Miranda de Souza
  * @author Milton Jakson de Souza Marcelino
  * @version 1.0
  * @since 21.0.7
  */
-public class Cliente {
-    private int idCliente;
+public class Paciente {
+    private int idPaciente;
     private String cpf;
     private String nome;
     private String senha;
 
-    public Cliente() {}
+    public Paciente() {}
 
-    public int getIdCliente() {
-        return idCliente;
+    public int getIdPaciente() {
+        return idPaciente;
     }
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
     public String getCpf() {
@@ -31,7 +31,7 @@ public class Cliente {
      * @author Lucas Barros Gouveia
      * @author Enzo Okuizumi Miranda de Souza
      * @author Milton Jakson de Souza Marcelino
-     * @param cpf é o cpf do cliente passado por parametro.
+     * @param cpf é o cpf do paciente passado por parametro.
      */
     public void setCpf(String cpf) {
         try {
@@ -53,7 +53,7 @@ public class Cliente {
      * @author Lucas Barros Gouveia
      * @author Enzo Okuizumi Miranda de Souza
      * @author Milton Jakson de Souza Marcelino
-     * @param nome é o nome do cliente passado por parametro.
+     * @param nome é o nome do paciente passado por parametro.
      */
     public void setNome(String nome) {
         try {

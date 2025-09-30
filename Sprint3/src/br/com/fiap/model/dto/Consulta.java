@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  */
 public class Consulta {
     private int idConsulta;
-    private int idCliente;
+    private int idPaciente;
     private String nomeMed;
     private LocalDateTime horario;
     private String local;
@@ -27,11 +27,11 @@ public class Consulta {
         this.idConsulta = idConsulta;
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public int getIdPaciente() {
+        return idPaciente;
     }
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
     public String getNomeMed() {

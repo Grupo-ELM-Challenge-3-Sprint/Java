@@ -1,7 +1,6 @@
 package br.com.fiap.view;
 
 import br.com.fiap.controller.ReceitaController;
-import br.com.fiap.controller.ReceitaController;
 
 import javax.swing.*;
 
@@ -17,7 +16,7 @@ public class ReceitaView {
     public static void main(String[] args) {
         String medicamento, prescricao;
         String[] choice = {"Inserir", "Alterar", "Excluir", "Listar"};
-        int option, idReceita, idCliente;
+        int option, idReceita, idPaciente;
         ReceitaController receitaCon = new ReceitaController();
         do {
             try {
@@ -25,18 +24,18 @@ public class ReceitaView {
 
                 switch (option) {
                     case 0:
-                        idCliente = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do cliente", "Cliente", JOptionPane.INFORMATION_MESSAGE));
+                        idPaciente = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do paciente", "Paciente", JOptionPane.INFORMATION_MESSAGE));
                         medicamento = JOptionPane.showInputDialog(null, "Digite o nome do medicamento", "Medicamento", JOptionPane.INFORMATION_MESSAGE);
                         prescricao = JOptionPane.showInputDialog(null, "Digite a prescrição (horário para tomar o remédio e quantas vezes", "Prescrição", JOptionPane.INFORMATION_MESSAGE);
                         
-                        System.out.println(receitaCon.inserirReceita(idCliente, medicamento, prescricao));
+                        System.out.println(receitaCon.inserirReceita(idPaciente, medicamento, prescricao));
                         break;
                     case 1:
-                        idReceita = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do cliente", "Cliente", JOptionPane.INFORMATION_MESSAGE));idCliente = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do cliente", "Cliente", JOptionPane.INFORMATION_MESSAGE));
-                        idCliente = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do cliente", "Cliente", JOptionPane.INFORMATION_MESSAGE));
+                        idReceita = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do paciente", "Paciente", JOptionPane.INFORMATION_MESSAGE));
+                        idPaciente = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do paciente", "Paciente", JOptionPane.INFORMATION_MESSAGE));
                         medicamento = JOptionPane.showInputDialog(null, "Digite o nome do medicamento", "Medicamento", JOptionPane.INFORMATION_MESSAGE);
                         prescricao = JOptionPane.showInputDialog(null, "Digite a prescrição (horário para tomar o remédio e quantas vezes", "Prescrição", JOptionPane.INFORMATION_MESSAGE);
-                        System.out.println(receitaCon.alterarReceita(idReceita, idCliente, medicamento, prescricao));
+                        System.out.println(receitaCon.alterarReceita(idReceita, idPaciente, medicamento, prescricao));
                         break;
                     case 2:
                         idReceita = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID da receita", "ID", JOptionPane.INFORMATION_MESSAGE));

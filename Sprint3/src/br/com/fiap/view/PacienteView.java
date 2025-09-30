@@ -1,49 +1,48 @@
 package br.com.fiap.view;
 
-import br.com.fiap.controller.ClienteController;
+import br.com.fiap.controller.PacienteController;
 
 import javax.swing.*;
-import java.sql.SQLException;
 
 /**
- * Classe <strong>ClienteView</strong>, onde são chamados os metodos CRUD para manipular objetos da classe <strong>Cliente</strong> por meio dos <strong>Controllers</strong>
+ * Classe <strong>PacienteView</strong>, onde são chamados os metodos CRUD para manipular objetos da classe <strong>Paciente</strong> por meio dos <strong>Controllers</strong>
  * @author Lucas Barros Gouveia
  * @author Enzo Okuizumi Miranda de Souza
  * @author Milton Jakson de Souza Marcelino
  * @version 1.0
  * @since 21.0.7
  */
-public class ClienteView {
+public class PacienteView {
     public static void main(String[] args) {
         String cpf, nome, senha;
         String[] choice = {"Inserir", "Alterar", "Excluir", "Listar"};
-        int option, idCliente;
-        ClienteController clienteCon = new ClienteController();
+        int option, idPaciente;
+        PacienteController pacienteCon = new PacienteController();
         do {
             try {
-                option = JOptionPane.showOptionDialog(null, "Escolha uma das opções abaixo para manipular um Cliente:\n", "Escolha", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, choice, choice[0]);
+                option = JOptionPane.showOptionDialog(null, "Escolha uma das opções abaixo para manipular um Paciente:\n", "Escolha", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, choice, choice[0]);
 
                 switch (option) {
                     case 0:
                         cpf = JOptionPane.showInputDialog(null, "Digite o cpf", "CPF", JOptionPane.INFORMATION_MESSAGE);
                         nome = JOptionPane.showInputDialog(null, "Digite o nome", "Nome", JOptionPane.INFORMATION_MESSAGE);
                         senha = JOptionPane.showInputDialog(null, "Digite a senha", "Placa", JOptionPane.INFORMATION_MESSAGE);
-                        System.out.println(clienteCon.inserirCliente(cpf, nome, senha));
+                        System.out.println(pacienteCon.inserirPaciente(cpf, nome, senha));
                         break;
                     case 1:
-                        idCliente = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID", "ID", JOptionPane.INFORMATION_MESSAGE));
+                        idPaciente = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID", "ID", JOptionPane.INFORMATION_MESSAGE));
                         cpf = JOptionPane.showInputDialog(null, "Digite o novo CPF", "Placa", JOptionPane.INFORMATION_MESSAGE);
                         nome = JOptionPane.showInputDialog(null, "Digite o novo nome", "Nome", JOptionPane.INFORMATION_MESSAGE);
                         senha = JOptionPane.showInputDialog(null, "Digite o nova senha", "Senha", JOptionPane.INFORMATION_MESSAGE);
-                        System.out.println(clienteCon.alterarCliente(idCliente, cpf, nome, senha));
+                        System.out.println(pacienteCon.alterarPaciente(idPaciente, cpf, nome, senha));
                         break;
                     case 2:
-                        idCliente = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do cliente", "ID", JOptionPane.INFORMATION_MESSAGE));
-                        System.out.println(clienteCon.excluirCliente(idCliente));
+                        idPaciente = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do paciente", "ID", JOptionPane.INFORMATION_MESSAGE));
+                        System.out.println(pacienteCon.excluirPaciente(idPaciente));
                         break;
                     case 3:
-                        idCliente = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do cliente", "ID", JOptionPane.INFORMATION_MESSAGE));
-                        System.out.println(clienteCon.listarUmCliente(idCliente));
+                        idPaciente = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do paciente", "ID", JOptionPane.INFORMATION_MESSAGE));
+                        System.out.println(pacienteCon.listarUmPaciente(idPaciente));
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Opção inválida", "Erro", JOptionPane.ERROR_MESSAGE);

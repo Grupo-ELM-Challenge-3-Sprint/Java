@@ -17,23 +17,23 @@ import java.sql.SQLException;
  */
 public class ReceitaController {
     /**
-     * O metodo <strong>inserirReceita</strong>, recebe os atributos do cliente por parametro, e retorna uma mensagem de erro ou de sucesso que vai obter do metodo da classe <strong>ReceitaDAO</strong>.
+     * O metodo <strong>inserirReceita</strong>, recebe os atributos do paciente por parametro, e retorna uma mensagem de erro ou de sucesso que vai obter do metodo da classe <strong>ReceitaDAO</strong>.
      * Dentro do metodo ele coloca os atributos no objeto da classe receita e passa ele por parametro para o metodo inserir. Depois de receber o retorno do metodo, ele armazena e retorna para a classe <strong>ReceitaView</strong>
      * @author Lucas Barros Gouveia
      * @author Enzo Okuizumi Miranda de Souza
      * @author Milton Jakson de Souza Marcelino
-     * @param idCliente é o id do cliente passado por parametro.
+     * @param idPaciente é o id do paciente passado por parametro.
      * @param medicamento é o medicamento da receita passado por parametro.
      * @param prescricao é a prescrição da receita passada por parametro.
      */
-    public String inserirReceita(int idCliente, String medicamento, String prescricao)
+    public String inserirReceita(int idPaciente, String medicamento, String prescricao)
             throws ClassNotFoundException, SQLException
     {
         String resultado;
         Connection con = ConnectionFactory.abrirConexao();
 
         Receita receita = new Receita();
-        receita.setIdCliente(idCliente);
+        receita.setIdPaciente(idPaciente);
         receita.setMedicamento(medicamento);
         receita.setPrescricao(prescricao);
 
@@ -45,17 +45,17 @@ public class ReceitaController {
     }
 
     /**
-     * O metodo <strong>alterarReceita</strong>, recebe os atributos do cliente por parametro, e retorna uma mensagem de erro ou de sucesso que vai obter do metodo da classe <strong>ReceitaDAO</strong>.
+     * O metodo <strong>alterarReceita</strong>, recebe os atributos do paciente por parametro, e retorna uma mensagem de erro ou de sucesso que vai obter do metodo da classe <strong>ReceitaDAO</strong>.
      * Dentro do metodo ele coloca os atributos no objeto da classe receita e passa ele por parametro para o metodo alterar. Depois de receber o retorno do metodo, ele armazena e retorna para a classe <strong>ReceitaView</strong>
      * @author Lucas Barros Gouveia
      * @author Enzo Okuizumi Miranda de Souza
      * @author Milton Jakson de Souza Marcelino
      * @param idReceita é o id da receita passado por parametro.
-     * @param idCliente é o id do cliente passado por parametro.
+     * @param idPaciente é o id do paciente passado por parametro.
      * @param medicamento é o medicamento da receita passado por parametro.
      * @param prescricao é a prescrição da receita passada por parametro.
      */
-    public String alterarReceita(int idReceita, int idCliente, String medicamento, String prescricao)
+    public String alterarReceita(int idReceita, int idPaciente, String medicamento, String prescricao)
             throws ClassNotFoundException, SQLException
     {
         String resultado;
@@ -63,7 +63,7 @@ public class ReceitaController {
 
         Receita receita = new Receita();
         receita.setIdReceita(idReceita);
-        receita.setIdCliente(idCliente);
+        receita.setIdPaciente(idPaciente);
         receita.setMedicamento(medicamento);
         receita.setPrescricao(prescricao);
 
@@ -75,7 +75,7 @@ public class ReceitaController {
     }
 
     /**
-     * O metodo <strong>excluirReceita</strong>, recebe os atributos do cliente por parametro, e retorna uma mensagem de erro ou de sucesso que vai obter do metodo da classe <strong>ReceitaDAO</strong>.
+     * O metodo <strong>excluirReceita</strong>, recebe os atributos do paciente por parametro, e retorna uma mensagem de erro ou de sucesso que vai obter do metodo da classe <strong>ReceitaDAO</strong>.
      * Dentro do metodo ele coloca os atributos no objeto da classe receita e passa ele por parametro para o metodo excluir. Depois de receber o retorno do metodo, ele armazena e retorna para a classe <strong>ReceitaView</strong>
      * @author Lucas Barros Gouveia
      * @author Enzo Okuizumi Miranda de Souza
@@ -99,7 +99,7 @@ public class ReceitaController {
     }
 
     /**
-     * O metodo <strong>listarUmaReceita</strong>, recebe os atributos do cliente por parametro, e retorna uma mensagem de erro ou de sucesso que vai obter do metodo da classe <strong>ReceitaDAO</strong>.
+     * O metodo <strong>listarUmaReceita</strong>, recebe os atributos do paciente por parametro, e retorna uma mensagem de erro ou de sucesso que vai obter do metodo da classe <strong>ReceitaDAO</strong>.
      * Dentro do metodo ele coloca os atributos no objeto da classe receita e passa ele por parametro para o metodo listarUm. Depois de receber o retorno do metodo, ele armazena e retorna para a classe <strong>ReceitaView</strong>
      * @author Lucas Barros Gouveia
      * @author Enzo Okuizumi Miranda de Souza

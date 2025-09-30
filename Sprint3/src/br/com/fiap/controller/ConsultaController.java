@@ -23,20 +23,20 @@ public class ConsultaController {
      * @author Lucas Barros Gouveia
      * @author Enzo Okuizumi Miranda de Souza
      * @author Milton Jakson de Souza Marcelino
-     * @param idCliente é o id do cliente passado por parametro.
+     * @param idPaciente é o id do paciente passado por parametro.
      * @param nomeMed é o nome do profissional da saúde que participa da consulta passado por parametro.
      * @param horario é o horário da consulta passado por parametro.
      * @param local é o local da consulta passado por parametro.
      * @param observacao é a observação da consulta passada por parametro.
      */
-    public String inserirConsulta(int idCliente, String nomeMed, LocalDateTime horario, String local, String observacao)
+    public String inserirConsulta(int idPaciente, String nomeMed, LocalDateTime horario, String local, String observacao)
             throws ClassNotFoundException, SQLException
     {
         String resultado;
         Connection con = ConnectionFactory.abrirConexao();
 
         Consulta consulta = new Consulta();
-        consulta.setIdCliente(idCliente);
+        consulta.setIdPaciente(idPaciente);
         consulta.setNomeMed(nomeMed);
         consulta.setHorario(horario);
         consulta.setLocal(local);
@@ -56,13 +56,13 @@ public class ConsultaController {
      * @author Enzo Okuizumi Miranda de Souza
      * @author Milton Jakson de Souza Marcelino
      * @param idConsulta é o id do consulta passado por parametro.
-     * @param idCliente é o id do cliente passado por parametro.
+     * @param idPaciente é o id do paciente passado por parametro.
      * @param nomeMed é o nome do profissional da saúde que participa da consulta passado por parametro.
      * @param horario é o horário da consulta passado por parametro.
      * @param local é o local da consulta passado por parametro.
      * @param observacao é a observação da consulta passada por parametro.
      */
-    public String alterarConsulta(int idConsulta, int idCliente, String nomeMed, LocalDateTime horario, String local, String observacao)
+    public String alterarConsulta(int idConsulta, int idPaciente, String nomeMed, LocalDateTime horario, String local, String observacao)
             throws ClassNotFoundException, SQLException
     {
         String resultado;
@@ -70,7 +70,7 @@ public class ConsultaController {
 
         Consulta consulta = new Consulta();
         consulta.setIdConsulta(idConsulta);
-        consulta.setIdCliente(idCliente);
+        consulta.setIdPaciente(idPaciente);
         consulta.setNomeMed(nomeMed);
         consulta.setHorario(horario);
         consulta.setLocal(local);

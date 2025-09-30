@@ -30,7 +30,7 @@ public class ConsultaDAO implements IDAO {
 
     /**
      * O metodo <strong>inserir</strong>, recebe um objeto por parametro, que vai ser a consulta, e retorna uma mensagem de erro ou de sucesso.
-     * Dentro do metodo ele pega os atributos idCliente, nomeMed, horario, local, observacao do object e coloca eles no preparedStatement, que usa a conexão para <strong>inserir</strong> a consulta na base de dados SQL.
+     * Dentro do metodo ele pega os atributos idPaciente, nomeMed, horario, local, observacao do object e coloca eles no preparedStatement, que usa a conexão para <strong>inserir</strong> a consulta na base de dados SQL.
      * @author Lucas Barros Gouveia
      * @author Enzo Okuizumi Miranda de Souza
      * @author Milton Jakson de Souza Marcelino
@@ -38,9 +38,9 @@ public class ConsultaDAO implements IDAO {
      */
     public String inserir(Object object) {
         consulta = (Consulta) object;
-        String sql = "INSERT INTO ddd_consulta(id_cliente, nome_med, horario, local, observacao) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO ddd_consulta(id_paci, nome_med, horario, local, observacao) VALUES(?,?,?,?,?)";
         try (PreparedStatement ps = getCon().prepareStatement(sql)) {
-            ps.setInt(1, consulta.getIdCliente());
+            ps.setInt(1, consulta.getIdPaciente());
             ps.setString(2, consulta.getNomeMed());
             ps.setString(3, consulta.getHorario().toString());
             ps.setString(4, consulta.getLocal());
@@ -59,7 +59,7 @@ public class ConsultaDAO implements IDAO {
 
     /**
      * O metodo <strong>alterar</strong>, recebe um objeto por parametro, que vai ser a consulta, e retorna uma mensagem de erro ou de sucesso.
-     * Dentro do metodo ele pega os atributos idConsulta, idCliente, nomeMed, horario, local, observacao do object e coloca eles no preparedStatement, que usa a conexão para <strong>alterar</strong> a consulta na base de dados SQL.
+     * Dentro do metodo ele pega os atributos idConsulta, idPaciente, nomeMed, horario, local, observacao do object e coloca eles no preparedStatement, que usa a conexão para <strong>alterar</strong> a consulta na base de dados SQL.
      * @author Lucas Barros Gouveia
      * @author Enzo Okuizumi Miranda de Souza
      * @author Milton Jakson de Souza Marcelino
@@ -67,9 +67,9 @@ public class ConsultaDAO implements IDAO {
      */
     public String alterar(Object object) {
         consulta = (Consulta) object;
-        String sql = "UPDATE ddd_consulta SET id_cliente=?, nome_med=?, horario=?, local=?, observacao=? WHERE id_consulta = ?";
+        String sql = "UPDATE ddd_consulta SET id_paci=?, nome_med=?, horario=?, local=?, observacao=? WHERE id_consulta = ?";
         try (PreparedStatement ps = getCon().prepareStatement(sql)) {
-            ps.setInt(1, consulta.getIdCliente());
+            ps.setInt(1, consulta.getIdPaciente());
             ps.setString(2, consulta.getNomeMed());
             ps.setString(3, consulta.getHorario().toString());
             ps.setString(4, consulta.getLocal());
