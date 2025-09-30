@@ -26,12 +26,12 @@ public class PacienteView {
                     case 0:
                         cpf = JOptionPane.showInputDialog(null, "Digite o cpf", "CPF", JOptionPane.INFORMATION_MESSAGE);
                         nome = JOptionPane.showInputDialog(null, "Digite o nome", "Nome", JOptionPane.INFORMATION_MESSAGE);
-                        senha = JOptionPane.showInputDialog(null, "Digite a senha", "Placa", JOptionPane.INFORMATION_MESSAGE);
+                        senha = JOptionPane.showInputDialog(null, "Digite a senha", "Senha", JOptionPane.INFORMATION_MESSAGE);
                         System.out.println(pacienteCon.inserirPaciente(cpf, nome, senha));
                         break;
                     case 1:
                         idPaciente = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID", "ID", JOptionPane.INFORMATION_MESSAGE));
-                        cpf = JOptionPane.showInputDialog(null, "Digite o novo CPF", "Placa", JOptionPane.INFORMATION_MESSAGE);
+                        cpf = JOptionPane.showInputDialog(null, "Digite o novo CPF", "CPF", JOptionPane.INFORMATION_MESSAGE);
                         nome = JOptionPane.showInputDialog(null, "Digite o novo nome", "Nome", JOptionPane.INFORMATION_MESSAGE);
                         senha = JOptionPane.showInputDialog(null, "Digite o nova senha", "Senha", JOptionPane.INFORMATION_MESSAGE);
                         System.out.println(pacienteCon.alterarPaciente(idPaciente, cpf, nome, senha));
