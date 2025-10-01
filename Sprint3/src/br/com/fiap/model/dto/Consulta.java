@@ -15,7 +15,7 @@ public class Consulta {
     private int idPaciente;
     private String nomeMed;
     private LocalDateTime horario;
-    private String local;
+    private String endereco;
     private String observacao;
 
     public Consulta() {}
@@ -63,11 +63,11 @@ public class Consulta {
         this.horario = horario;
     }
 
-    public String getLocal() {
-        return local;
+    public String getEndereco() {
+        return endereco;
     }
-    public void setLocal(String local) {
-        this.local = local;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public String getObservacao() {

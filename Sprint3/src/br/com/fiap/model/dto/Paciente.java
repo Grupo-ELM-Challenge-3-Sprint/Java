@@ -35,10 +35,10 @@ public class Paciente {
      */
     public void setCpf(String cpf) {
         try {
-            if (cpf.matches("^(\\d{11}|\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2})$")) {
-                this.cpf = cpf.replace(".", "").replace("-", "");
+            if (cpf.length() < 12) {
+                this.cpf = cpf;
             } else {
-                throw new Exception("cpf inválido! Deve possuir 11 caracteres.");
+                throw new Exception("CPF inválido! Coloque apenas 11 números e não use caracteres especiais como . ou -");
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -71,7 +71,7 @@ public class Paciente {
         return senha;
     }
     /**
-     * O setter "setSenha", recebe uma string por parametro que deve possuir entre 6 a 14 caracteres, caso contrário ele faz o tratamento de erro.
+     * O setter "setSenha", recebe uma string por parametro que deve possuir entre 6 a 20 caracteres, caso contrário ele faz o tratamento de erro.
      * @author Lucas Barros Gouveia
      * @author Enzo Okuizumi Miranda de Souza
      * @author Milton Jakson de Souza Marcelino
@@ -79,10 +79,10 @@ public class Paciente {
      */
     public void setSenha(String senha) {
         try {
-            if (senha.matches("^.{6,14}$")) {
+            if (senha.matches("^.{6,20}$")) {
                 this.senha = senha;
             } else {
-                throw new Exception("Senha incorreta! Deve possuir 6 a 14.");
+                throw new Exception("Senha incorreta! Deve possuir 6 a 20.");
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

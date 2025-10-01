@@ -37,7 +37,7 @@ public class PacienteDAO implements IDAO {
      */
     public String inserir(Object object) {
         paciente = (Paciente) object;
-        String sql = "INSERT INTO ddd_paciente(nm_paci, cpf, senha)";
+        String sql = "INSERT INTO ddd_paciente(cpf, nm_paci, senha) VALUES(?,?,?)";
         try (PreparedStatement ps = getCon().prepareStatement(sql)) {
             ps.setString(1, paciente.getCpf());
             ps.setString(2, paciente.getNome());
@@ -64,7 +64,7 @@ public class PacienteDAO implements IDAO {
      */
     public String alterar(Object object) {
         paciente = (Paciente) object;
-        String sql = "UPDATE ddd_paciente SET nm_paci = ?, cpf = ?, senha = ? WHERE id_paci = ?";
+        String sql = "UPDATE ddd_paciente SET cpf = ?, nm_paci = ?, senha = ? WHERE id_paci = ?";
         try (PreparedStatement ps = getCon().prepareStatement(sql)) {
             ps.setString(1, paciente.getCpf());
             ps.setString(2, paciente.getNome());
@@ -122,7 +122,7 @@ public class PacienteDAO implements IDAO {
             ps.setInt(1, paciente.getIdPaciente());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return String.format("ID: %s\nCPF: %s\nNome: %s\nSenha: %s", paciente.getIdPaciente(), paciente.getCpf(), paciente.getNome(), paciente.getSenha());
+                return String.format("ID: %s\nCPF: %s\nNome: %s\nSenha: %s", paciente.getIdPaciente(), rs.getString("cpf"), rs.getString("nm_paci"), rs.getString("senha"));
             } else {
                 return "Registro não encontrado";
             }

@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
  */
 public class ConsultaView {
     public static void main(String[] args) {
-        String nomeMed, observacao, local, aux, dia, mes, ano;
+        String nomeMed, observacao, endereco, aux, dia, mes, ano, hora, minuto;
         LocalDateTime horario;
         String[] choice = {"Inserir", "Alterar", "Excluir", "Listar"};
         int option, idConsulta, idPaciente;
@@ -28,28 +28,38 @@ public class ConsultaView {
                     case 0:
                         idPaciente = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do paciente", "Paciente", JOptionPane.INFORMATION_MESSAGE));
                         nomeMed = JOptionPane.showInputDialog(null, "Digite o nome do profissional da saúde", "Nome", JOptionPane.INFORMATION_MESSAGE);
-                        local = JOptionPane.showInputDialog(null, "Digite o local", "Local", JOptionPane.INFORMATION_MESSAGE);
+                        endereco = JOptionPane.showInputDialog(null, "Digite o endereco", "Endereco", JOptionPane.INFORMATION_MESSAGE);
                         observacao = JOptionPane.showInputDialog(null, "Digite uma observação", "Observação", JOptionPane.INFORMATION_MESSAGE);
 
                         aux = JOptionPane.showInputDialog(null, "Digite a data do consulta (Dia/Mês/Ano)", "Data", JOptionPane.INFORMATION_MESSAGE);
                         dia = aux.substring(0,2);
                         mes = aux.substring(3,5);
                         ano = aux.substring(6,10);
-                        horario = LocalDateTime.parse(ano+"-"+mes+"-"+dia);
-                        System.out.println(consultaCon.inserirConsulta(idPaciente, nomeMed, horario, local, observacao));
+                        aux = JOptionPane.showInputDialog(null, "Digite o horário do consulta (Hora:Minuto)", "horario", JOptionPane.INFORMATION_MESSAGE);
+                        hora = aux.substring(0,2);
+                        minuto = aux.substring(3,5);
+
+                        horario = LocalDateTime.parse(ano+"-"+mes+"-"+dia+"T"+hora+":"+minuto);
+
+                        System.out.println(consultaCon.inserirConsulta(idPaciente, nomeMed, horario, endereco, observacao));
                         break;
                     case 1:
-                        idConsulta = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do paciente", "Paciente", JOptionPane.INFORMATION_MESSAGE));idPaciente = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do paciente", "Paciente", JOptionPane.INFORMATION_MESSAGE));
+                        idConsulta = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID da consulta", "Consulta", JOptionPane.INFORMATION_MESSAGE));
+                        idPaciente = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do paciente", "Paciente", JOptionPane.INFORMATION_MESSAGE));
                         nomeMed = JOptionPane.showInputDialog(null, "Digite o nome do profissional da saúde", "Nome", JOptionPane.INFORMATION_MESSAGE);
-                        local = JOptionPane.showInputDialog(null, "Digite o local", "Local", JOptionPane.INFORMATION_MESSAGE);
+                        endereco = JOptionPane.showInputDialog(null, "Digite o endereco", "Endereco", JOptionPane.INFORMATION_MESSAGE);
                         observacao = JOptionPane.showInputDialog(null, "Digite uma observação", "Observação", JOptionPane.INFORMATION_MESSAGE);
 
                         aux = JOptionPane.showInputDialog(null, "Digite a data do consulta (Dia/Mês/Ano)", "Data", JOptionPane.INFORMATION_MESSAGE);
                         dia = aux.substring(0,2);
                         mes = aux.substring(3,5);
                         ano = aux.substring(6,10);
-                        horario = LocalDateTime.parse(ano+"-"+mes+"-"+dia);
-                        System.out.println(consultaCon.alterarConsulta(idConsulta, idPaciente, nomeMed, horario, local, observacao));
+                        aux = JOptionPane.showInputDialog(null, "Digite o horário do consulta (Hora:Minuto)", "horario", JOptionPane.INFORMATION_MESSAGE);
+                        hora = aux.substring(0,2);
+                        minuto = aux.substring(3,5);
+
+                        horario = LocalDateTime.parse(ano+"-"+mes+"-"+dia+"T"+hora+":"+minuto);
+                        System.out.println(consultaCon.alterarConsulta(idConsulta, idPaciente, nomeMed, horario, endereco, observacao));
                         break;
                     case 2:
                         idConsulta = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID da consulta", "ID", JOptionPane.INFORMATION_MESSAGE));
@@ -57,7 +67,7 @@ public class ConsultaView {
                         break;
                     case 3:
                         idConsulta = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do consulta", "ID", JOptionPane.INFORMATION_MESSAGE));
-                        System.out.println(consultaCon.listarUmaConsulta(idConsulta));
+                        JOptionPane.showMessageDialog(null, consultaCon.listarUmaConsulta(idConsulta));
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Opção inválida", "Erro", JOptionPane.ERROR_MESSAGE);

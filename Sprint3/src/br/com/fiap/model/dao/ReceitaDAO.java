@@ -38,7 +38,7 @@ public class ReceitaDAO implements IDAO{
      */
     public String inserir(Object object) {
         receita = (Receita) object;
-        String sql = "INSERT INTO ddd_receita(id_paci, medicamento, descricao) VALUES(?,?,?)";
+        String sql = "INSERT INTO ddd_receita(id_paci, medicamento, prescricao) VALUES(?,?,?)";
         try (PreparedStatement ps = getCon().prepareStatement(sql)) {
             ps.setInt(1, receita.getIdPaciente());
             ps.setString(2, receita.getMedicamento());
@@ -65,7 +65,7 @@ public class ReceitaDAO implements IDAO{
      */
     public String alterar(Object object) {
         receita = (Receita) object;
-        String sql = "UPDATE ddd_receita SET id_paci=?, medicamento=?, descricao=? WHERE id_receita = ?";
+        String sql = "UPDATE ddd_receita SET id_paci=?, medicamento=?, prescricao=? WHERE id_receita = ?";
         try (PreparedStatement ps = getCon().prepareStatement(sql)) {
             ps.setInt(1, receita.getIdPaciente());
             ps.setString(2, receita.getMedicamento());
@@ -118,12 +118,12 @@ public class ReceitaDAO implements IDAO{
      */
     public String listarUm(Object object) {
         receita = (Receita) object;
-        String sql = "SELECT FROM ddd_receita WHERE id_receita = ?";
+        String sql = "SELECT * FROM ddd_receita WHERE id_receita = ?";
         try (PreparedStatement ps = getCon().prepareStatement(sql)) {
             ps.setInt(1, receita.getIdReceita());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return String.format("Medicamento: %s\nPrescrição: %s", receita.getMedicamento(), receita.getPrescricao());
+                return String.format("ID da receita: %s\nID do paciente: %s\nMedicamento: %s\nPrescrição: %s", receita.getIdReceita(), rs.getInt("id_paci"), rs.getString("medicamento"), rs.getString("prescricao"));
             } else {
                 return "Registro não encontrado";
             }

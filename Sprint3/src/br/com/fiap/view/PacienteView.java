@@ -14,7 +14,7 @@ import javax.swing.*;
  */
 public class PacienteView {
     public static void main(String[] args) {
-        String cpf, nome, senha;
+        String nome, senha, cpf;
         String[] choice = {"Inserir", "Alterar", "Excluir", "Listar"};
         int option, idPaciente;
         PacienteController pacienteCon = new PacienteController();
@@ -26,7 +26,7 @@ public class PacienteView {
                     case 0:
                         cpf = JOptionPane.showInputDialog(null, "Digite o cpf", "CPF", JOptionPane.INFORMATION_MESSAGE);
                         nome = JOptionPane.showInputDialog(null, "Digite o nome", "Nome", JOptionPane.INFORMATION_MESSAGE);
-                        senha = JOptionPane.showInputDialog(null, "Digite a senha", "Senha", JOptionPane.INFORMATION_MESSAGE);
+                        senha = JOptionPane.showInputDialog(null, "Digite a senha", "CPF", JOptionPane.INFORMATION_MESSAGE);
                         System.out.println(pacienteCon.inserirPaciente(cpf, nome, senha));
                         break;
                     case 1:
@@ -42,7 +42,7 @@ public class PacienteView {
                         break;
                     case 3:
                         idPaciente = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do paciente", "ID", JOptionPane.INFORMATION_MESSAGE));
-                        System.out.println(pacienteCon.listarUmPaciente(idPaciente));
+                        JOptionPane.showMessageDialog(null, pacienteCon.listarUmPaciente(idPaciente));
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Opção inválida", "Erro", JOptionPane.ERROR_MESSAGE);

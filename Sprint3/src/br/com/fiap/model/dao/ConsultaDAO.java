@@ -2,6 +2,7 @@ package br.com.fiap.model.dao;
 
 import br.com.fiap.model.dto.Consulta;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,7 +31,7 @@ public class ConsultaDAO implements IDAO {
 
     /**
      * O metodo <strong>inserir</strong>, recebe um objeto por parametro, que vai ser a consulta, e retorna uma mensagem de erro ou de sucesso.
-     * Dentro do metodo ele pega os atributos idPaciente, nomeMed, horario, local, observacao do object e coloca eles no preparedStatement, que usa a conexão para <strong>inserir</strong> a consulta na base de dados SQL.
+     * Dentro do metodo ele pega os atributos idPaciente, nomeMed, horario, endereco, observacao do object e coloca eles no preparedStatement, que usa a conexão para <strong>inserir</strong> a consulta na base de dados SQL.
      * @author Lucas Barros Gouveia
      * @author Enzo Okuizumi Miranda de Souza
      * @author Milton Jakson de Souza Marcelino
@@ -38,12 +39,12 @@ public class ConsultaDAO implements IDAO {
      */
     public String inserir(Object object) {
         consulta = (Consulta) object;
-        String sql = "INSERT INTO ddd_consulta(id_paci, nome_med, horario, local, observacao) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO ddd_consulta(id_paci, nm_med, horario, endereco, observacao) VALUES(?,?,?,?,?)";
         try (PreparedStatement ps = getCon().prepareStatement(sql)) {
             ps.setInt(1, consulta.getIdPaciente());
             ps.setString(2, consulta.getNomeMed());
             ps.setString(3, consulta.getHorario().toString());
-            ps.setString(4, consulta.getLocal());
+            ps.setString(4, consulta.getEndereco());
             ps.setString(5, consulta.getObservacao());
             if (ps.executeUpdate() > 0) {
                 return "Inserido com sucesso";
@@ -59,7 +60,7 @@ public class ConsultaDAO implements IDAO {
 
     /**
      * O metodo <strong>alterar</strong>, recebe um objeto por parametro, que vai ser a consulta, e retorna uma mensagem de erro ou de sucesso.
-     * Dentro do metodo ele pega os atributos idConsulta, idPaciente, nomeMed, horario, local, observacao do object e coloca eles no preparedStatement, que usa a conexão para <strong>alterar</strong> a consulta na base de dados SQL.
+     * Dentro do metodo ele pega os atributos idConsulta, idPaciente, nomeMed, horario, endereco, observacao do object e coloca eles no preparedStatement, que usa a conexão para <strong>alterar</strong> a consulta na base de dados SQL.
      * @author Lucas Barros Gouveia
      * @author Enzo Okuizumi Miranda de Souza
      * @author Milton Jakson de Souza Marcelino
@@ -67,12 +68,12 @@ public class ConsultaDAO implements IDAO {
      */
     public String alterar(Object object) {
         consulta = (Consulta) object;
-        String sql = "UPDATE ddd_consulta SET id_paci=?, nome_med=?, horario=?, local=?, observacao=? WHERE id_consulta = ?";
+        String sql = "UPDATE ddd_consulta SET id_paci=?, nm_med=?, horario=?, endereco=?, observacao=? WHERE id_consulta = ?";
         try (PreparedStatement ps = getCon().prepareStatement(sql)) {
             ps.setInt(1, consulta.getIdPaciente());
             ps.setString(2, consulta.getNomeMed());
             ps.setString(3, consulta.getHorario().toString());
-            ps.setString(4, consulta.getLocal());
+            ps.setString(4, consulta.getEndereco());
             ps.setString(5, consulta.getObservacao());
             ps.setInt(6, consulta.getIdConsulta());
 
@@ -123,13 +124,20 @@ public class ConsultaDAO implements IDAO {
      */
     public String listarUm(Object object) {
         consulta = (Consulta) object;
-        String sql = "SELECT FROM ddd_consulta WHERE id_consulta = ?";
+        String sql = "SELECT * FROM ddd_consulta WHERE id_consulta = ?";
         try (PreparedStatement ps = getCon().prepareStatement(sql)) {
             ps.setInt(1, consulta.getIdConsulta());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                return String.format("Nome do profissional de saúde: %s\nHorário: %s\nLocal: %s\nObservação: %s", consulta.getNomeMed(), consulta.getHorario().format(dtf), consulta.getLocal(), consulta.getObservacao());
+                String aux = rs.getString("horario");
+                String ano = aux.substring(0,4);
+                String mes = aux.substring(5,7);
+                String dia = aux.substring(8,10);
+                String tempo = aux.substring(11,16);
+
+                String data = dia+"/"+mes+"/"+ano;
+
+                return String.format("\nID da consulta: %s\nID do paciente: %S\nNome do profissional de saúde: %s\nData: %s\nHorário: %s\nEndereco: %s\nObservação: %s", consulta.getIdConsulta(), rs.getInt("id_paci"), rs.getString("nm_med"), data, tempo, rs.getString("endereco"), rs.getString("observacao"));
             } else {
                 return "Registro não encontrado";
             }

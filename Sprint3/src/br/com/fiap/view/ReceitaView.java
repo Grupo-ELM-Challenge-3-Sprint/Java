@@ -31,7 +31,7 @@ public class ReceitaView {
                         System.out.println(receitaCon.inserirReceita(idPaciente, medicamento, prescricao));
                         break;
                     case 1:
-                        idReceita = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do paciente", "Paciente", JOptionPane.INFORMATION_MESSAGE));
+                        idReceita = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID da receita", "Receita", JOptionPane.INFORMATION_MESSAGE));
                         idPaciente = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do paciente", "Paciente", JOptionPane.INFORMATION_MESSAGE));
                         medicamento = JOptionPane.showInputDialog(null, "Digite o nome do medicamento", "Medicamento", JOptionPane.INFORMATION_MESSAGE);
                         prescricao = JOptionPane.showInputDialog(null, "Digite a prescrição (horário para tomar o remédio e quantas vezes", "Prescrição", JOptionPane.INFORMATION_MESSAGE);
@@ -43,7 +43,7 @@ public class ReceitaView {
                         break;
                     case 3:
                         idReceita = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o ID do receita", "ID", JOptionPane.INFORMATION_MESSAGE));
-                        System.out.println(receitaCon.listarUmaReceita(idReceita));
+                        JOptionPane.showMessageDialog(null, receitaCon.listarUmaReceita(idReceita));
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Opção inválida", "Erro", JOptionPane.ERROR_MESSAGE);

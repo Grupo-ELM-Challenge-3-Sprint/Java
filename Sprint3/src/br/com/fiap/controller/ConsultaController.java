@@ -26,10 +26,10 @@ public class ConsultaController {
      * @param idPaciente é o id do paciente passado por parametro.
      * @param nomeMed é o nome do profissional da saúde que participa da consulta passado por parametro.
      * @param horario é o horário da consulta passado por parametro.
-     * @param local é o local da consulta passado por parametro.
+     * @param endereco é o endereco da consulta passado por parametro.
      * @param observacao é a observação da consulta passada por parametro.
      */
-    public String inserirConsulta(int idPaciente, String nomeMed, LocalDateTime horario, String local, String observacao)
+    public String inserirConsulta(int idPaciente, String nomeMed, LocalDateTime horario, String endereco, String observacao)
             throws ClassNotFoundException, SQLException
     {
         String resultado;
@@ -39,7 +39,7 @@ public class ConsultaController {
         consulta.setIdPaciente(idPaciente);
         consulta.setNomeMed(nomeMed);
         consulta.setHorario(horario);
-        consulta.setLocal(local);
+        consulta.setEndereco(endereco);
         consulta.setObservacao(observacao);
 
         ConsultaDAO consultaDAO = new ConsultaDAO(con);
@@ -59,10 +59,10 @@ public class ConsultaController {
      * @param idPaciente é o id do paciente passado por parametro.
      * @param nomeMed é o nome do profissional da saúde que participa da consulta passado por parametro.
      * @param horario é o horário da consulta passado por parametro.
-     * @param local é o local da consulta passado por parametro.
+     * @param endereco é o endereco da consulta passado por parametro.
      * @param observacao é a observação da consulta passada por parametro.
      */
-    public String alterarConsulta(int idConsulta, int idPaciente, String nomeMed, LocalDateTime horario, String local, String observacao)
+    public String alterarConsulta(int idConsulta, int idPaciente, String nomeMed, LocalDateTime horario, String endereco, String observacao)
             throws ClassNotFoundException, SQLException
     {
         String resultado;
@@ -73,7 +73,7 @@ public class ConsultaController {
         consulta.setIdPaciente(idPaciente);
         consulta.setNomeMed(nomeMed);
         consulta.setHorario(horario);
-        consulta.setLocal(local);
+        consulta.setEndereco(endereco);
         consulta.setObservacao(observacao);
 
         ConsultaDAO consultaDAO = new ConsultaDAO(con);
